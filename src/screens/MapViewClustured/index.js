@@ -28,7 +28,6 @@ const MapViewClustered = () => {
 
   React.useEffect(() => {}, []);
 
-
   const onPress = () => {
     Alert.alert('New Location', 'will be added', [
       {
