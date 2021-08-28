@@ -9,7 +9,7 @@ import data from '../../helpers/data';
 import data2 from '../../helpers/data2';
 import styles from './style';
 import RenderItem from '../../components/RenderItem';
-import NewLocModal from '../../components/NewLocModal';
+import AddingNewLocationModal from '../../components/AddingNewLocationModal';
 
 const initialRegion = {
   latitude: 39.91987,
@@ -21,15 +21,17 @@ const initialRegion = {
 const MapViewClustered = () => {
   const [allData, setAllData] = useState(data2);
   const [markerVisible, setMarkerVisible] = useState(false);
+  const [locationsModalVisibility, setLocationsModalVisibility] =
+    useState(false);
+  const [addingNewLocationVisibility, setAddingNewLocationVisibility] =
+    useState(false);
+  const [cityText, setCityText] = useState('');
   const [location, setLocation] = useState({
     latitude: 39.925533,
     longitude: 32.866287,
     latitudeDelta: 0.5,
     longitudeDelta: 0.5,
   });
-  const [modalLocationVisibility, setModalLocationVisibility] = useState(false);
-  const [modalNewLocationVisible, setModalNewLocationVisible] = useState(false);
-  const [cityText, setCityText] = useState('');
 
   React.useEffect(() => {}, []);
 
@@ -77,9 +79,9 @@ const MapViewClustered = () => {
         onRegionChange={e => {
           // console.log(e.latitudeDelta);
           if (e.latitudeDelta < 0.07) {
-            setModalLocationVisibility(true);
+            setLocationsModalVisibility(true);
           } else {
-            setModalLocationVisibility(false);
+            setLocationsModalVisibility(false);
           }
         }}
         onLongPress={e => {
@@ -94,13 +96,11 @@ const MapViewClustered = () => {
         {renderClusteredMarkers()}
         {markerVisible ? (
           <Marker
-            onPress={() => setModalNewLocationVisible(true)}
+            onPress={() => setAddingNewLocationVisibility(true)}
             coordinate={location}>
             <View style={styles.markerVisibleContainer}>
               <TouchableOpacity>
-                <Text style={styles.markerVisibleText}>
-                  {'Add New Location'}
-                </Text>
+                <Text style={styles.markerVisibleText}>{'New Location'}</Text>
               </TouchableOpacity>
               <Icon name="location" size={50} color="#052" />
             </View>
@@ -114,37 +114,20 @@ const MapViewClustered = () => {
           <Icon name="location" size={27} color="#052" />
         </View>
       ) : null}
-      {modalLocationVisibility ? (
-        <View
-          style={{
-            width: '100%',
-            height: '40%',
-            backgroundColor: '#fff',
-            position: 'absolute',
-            zIndex: 2,
-            bottom: 0,
-            marginRight: 30,
-            padding: 25,
-            borderTopRightRadius: 30,
-            borderTopLeftRadius: 30,
-            borderTopColor: 'rgba(0, 0, 0, 0.4)',
-            borderTopWidth: 0.6,
-            borderLeftWidth: 0.6,
-            borderRightWidth: 0.6,
-          }}>
+      {locationsModalVisibility ? (
+        <View style={styles.locationsModalVisibilityContainer}>
           <FlatList
             data={data}
-            renderItem={({item}) => {
-              return <RenderItem item={item} />;
-            }}
+            renderItem={({item}) => <RenderItem item={item} />}
             keyExtractor={(_, index) => index}
           />
         </View>
       ) : null}
-      <NewLocModal
-        modalVisible={modalNewLocationVisible}
+      <AddingNewLocationModal
+        modalVisible={addingNewLocationVisibility}
         closeFunction={e => {
-          setModalNewLocationVisible(e);
+          setAddingNewLocationVisibility(e);
+          setMarkerVisible(false);
         }}
         textFunction={e => {
           setCityText(e);

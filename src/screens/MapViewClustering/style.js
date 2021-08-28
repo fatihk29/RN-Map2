@@ -40,6 +40,22 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 10,
   },
+  locationsModalVisibilityContainer: {
+    width: '100%',
+    height: '40%',
+    backgroundColor: '#fff',
+    position: 'absolute',
+    zIndex: 2,
+    bottom: 0,
+    marginRight: 30,
+    padding: 25,
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+    borderTopColor: 'rgba(0, 0, 0, 0.4)',
+    borderTopWidth: 0.6,
+    borderLeftWidth: 0.6,
+    borderRightWidth: 0.6,
+  },
 });
 
 export default styles;
