@@ -26,7 +26,6 @@ const ListScreen = () => {
     );
   };
 
-
   return (
     <>
       <SafeAreaView style={styles.container}>
