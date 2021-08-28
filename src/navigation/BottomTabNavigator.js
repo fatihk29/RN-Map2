@@ -2,7 +2,7 @@ import React from 'react';
 import IconMCI from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import MapViewClustered from '../screens/MapViewClustured';
+import MapViewClustering from '../screens/MapViewClustering';
 import MapView from '../screens/MapView';
 import ListScreen from '../screens/ListScreen';
 
@@ -17,7 +17,7 @@ function BottomTabNavigator(props) {
       labeled={true}>
       <Tab.Screen
         name="MapViewClustered"
-        component={MapViewClustered}
+        component={MapViewClustering}
         options={{
           tabBarLabel: 'Map',
           tabBarIcon: ({color}) => (
