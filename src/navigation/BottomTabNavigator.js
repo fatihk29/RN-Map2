@@ -3,6 +3,7 @@ import IconMCI from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import MapViewClustered from '../screens/MapViewClustured';
+import MapView from '../screens/MapView';
 import ListScreen from '../screens/ListScreen';
 
 const Tab = createBottomTabNavigator();
