@@ -32,9 +32,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 0.3,
     borderColor: 'green',
-    backgroundColor: '#ccc',
+    backgroundColor: '#eee',
     zIndex: 1,
-    bottom: 0,
+    top: 0,
   },
   infoText: {
     color: 'black',

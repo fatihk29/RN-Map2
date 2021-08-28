@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, TouchableOpacity, Text, Alert} from 'react-native';
+import {View, TouchableOpacity, Text, FlatList} from 'react-native';
 import {PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps';
 import MapView from 'react-native-map-clustering';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -8,6 +8,8 @@ import CustomizedMarkerLabel from '../../components/CustomizedMarkerLabel';
 import data from '../../helpers/data';
 import data2 from '../../helpers/data2';
 import styles from './style';
+import RenderItem from '../../components/RenderItem';
+import NewLocModal from '../../components/NewLocModal';
 
 const initialRegion = {
   latitude: 39.91987,
@@ -25,41 +27,11 @@ const MapViewClustered = () => {
     latitudeDelta: 0.5,
     longitudeDelta: 0.5,
   });
+  const [modalLocationVisibility, setModalLocationVisibility] = useState(false);
+  const [modalNewLocationVisible, setModalNewLocationVisible] = useState(false);
+  const [cityText, setCityText] = useState('');
 
   React.useEffect(() => {}, []);
-
-  const onPress = () => {
-    Alert.alert('New Location', 'will be added', [
-      {
-        text: 'Cancel',
-        onPress: () => {
-          setMarkerVisible(false);
-          // console.log('Cancel Pressed');
-        },
-        style: 'cancel',
-      },
-      {
-        text: 'OK',
-        onPress: () => {
-          setMarkerVisible(false);
-          setAllData([
-            ...allData,
-            {
-              city: 'xx',
-              lat: `${location.latitude}`,
-              lng: `${location.longitude}`,
-              country: 'Turkey',
-              iso2: 'TR',
-              admin_name: 'Not knowing',
-              capital: 'minor',
-              population: '',
-              population_proper: '',
-            },
-          ]);
-        },
-      },
-    ]);
-  };
 
   function renderClusteredMarkers() {
     return allData.map((item, index) => (
@@ -76,6 +48,24 @@ const MapViewClustered = () => {
     ));
   }
 
+  function saveFunction() {
+    setMarkerVisible(false);
+    setAllData([
+      ...allData,
+      {
+        city: `${cityText}`,
+        lat: `${location.latitude}`,
+        lng: `${location.longitude}`,
+        country: 'Turkey',
+        iso2: 'TR',
+        admin_name: 'Not knowing',
+        capital: 'minor',
+        population: '',
+        population_proper: '',
+      },
+    ]);
+  }
+
   return (
     <View style={styles.container}>
       <MapView
@@ -84,6 +74,14 @@ const MapViewClustered = () => {
         provider={PROVIDER_GOOGLE}
         clusterColor="blue"
         showsCompass={true}
+        onRegionChange={e => {
+          // console.log(e.latitudeDelta);
+          if (e.latitudeDelta < 0.07) {
+            setModalLocationVisibility(true);
+          } else {
+            setModalLocationVisibility(false);
+          }
+        }}
         onLongPress={e => {
           setLocation({
             longitude: e.nativeEvent.coordinate.longitude,
@@ -96,9 +94,7 @@ const MapViewClustered = () => {
         {renderClusteredMarkers()}
         {markerVisible ? (
           <Marker
-            onPress={() => {
-              onPress();
-            }}
+            onPress={() => setModalNewLocationVisible(true)}
             coordinate={location}>
             <View style={styles.markerVisibleContainer}>
               <TouchableOpacity>
@@ -118,6 +114,43 @@ const MapViewClustered = () => {
           <Icon name="location" size={27} color="#052" />
         </View>
       ) : null}
+      {modalLocationVisibility ? (
+        <View
+          style={{
+            width: '100%',
+            height: '40%',
+            backgroundColor: '#fff',
+            position: 'absolute',
+            zIndex: 2,
+            bottom: 0,
+            marginRight: 30,
+            padding: 25,
+            borderTopRightRadius: 30,
+            borderTopLeftRadius: 30,
+            borderTopColor: 'rgba(0, 0, 0, 0.4)',
+            borderTopWidth: 0.6,
+            borderLeftWidth: 0.6,
+            borderRightWidth: 0.6,
+          }}>
+          <FlatList
+            data={data}
+            renderItem={({item}) => {
+              return <RenderItem item={item} />;
+            }}
+            keyExtractor={(_, index) => index}
+          />
+        </View>
+      ) : null}
+      <NewLocModal
+        modalVisible={modalNewLocationVisible}
+        closeFunction={e => {
+          setModalNewLocationVisible(e);
+        }}
+        textFunction={e => {
+          setCityText(e);
+        }}
+        saveFunction={() => saveFunction()}
+      />
     </View>
   );
 };
