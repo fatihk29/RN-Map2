@@ -22,21 +22,21 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
     width: '60%',
-    minHeight: '30%',
+    minHeight: '35%',
+    maxHeight: '55%',
     justifyContent: 'space-between',
   },
   buttonContainer: {
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginTop: 30,
   },
   button: {
     borderRadius: 20,
     padding: 10,
     elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
+    width: '40%',
   },
   buttonClose: {
     backgroundColor: '#2196F3',
@@ -49,6 +49,14 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  textInput: {
+    borderWidth: 0.7,
+    borderColor: '#052',
+    width: '90%',
+    borderRadius: 15,
   },
 });
 

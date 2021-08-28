@@ -14,12 +14,14 @@ const AddingNewLocationModal = ({
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.modalText}>Add New Location</Text>
-          <TextInput placeholder="City" onChangeText={e => textFunction(e)} />
+          <View style={styles.textInput}>
+            <TextInput placeholder="City" onChangeText={e => textFunction(e)} />
+          </View>
           <View style={styles.buttonContainer}>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => closeFunction(false)}>
-              <Text style={styles.textStyle}>Close</Text>
+              <Text style={styles.textStyle}>CLOSE</Text>
             </Pressable>
             <Pressable
               style={[styles.button, styles.buttonClose]}
