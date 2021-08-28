@@ -18,7 +18,7 @@ const ListScreen = () => {
         />
       </SafeAreaView>
       <View style={styles.numOfDataContainer}>
-        <Text>Total Number of Location:</Text>
+        <Text>{'Total Number of Location:'}</Text>
         <Text style={styles.numOfDataText}>{data.length}</Text>
       </View>
     </>

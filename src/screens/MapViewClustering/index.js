@@ -110,7 +110,7 @@ const MapViewClustered = () => {
       {markerVisible ? (
         <View style={styles.info}>
           <Icon name="information-circle" size={25} color="black" />
-          <Text style={styles.infoText}>To Add New Location Click</Text>
+          <Text style={styles.infoText}>{'To Add New Location Click'}</Text>
           <Icon name="location" size={27} color="#052" />
         </View>
       ) : null}

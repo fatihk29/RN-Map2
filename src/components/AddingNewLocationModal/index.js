@@ -13,7 +13,7 @@ const AddingNewLocationModal = ({
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Text style={styles.modalText}>Add New Location</Text>
+          <Text style={styles.modalText}>{'Add New Location'}</Text>
           <View style={styles.textInput}>
             <TextInput placeholder="City" onChangeText={e => textFunction(e)} />
           </View>
@@ -21,7 +21,7 @@ const AddingNewLocationModal = ({
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => closeFunction(false)}>
-              <Text style={styles.textStyle}>CLOSE</Text>
+              <Text style={styles.textStyle}>{'CLOSE'}</Text>
             </Pressable>
             <Pressable
               style={[styles.button, styles.buttonClose]}
@@ -29,7 +29,7 @@ const AddingNewLocationModal = ({
                 saveFunction();
                 closeFunction(false);
               }}>
-              <Text style={styles.textStyle}>OK</Text>
+              <Text style={styles.textStyle}>{'OK'}</Text>
             </Pressable>
           </View>
         </View>

@@ -42,16 +42,6 @@ const style = StyleSheet.create({
   midHeaderText: {
     fontSize: 18,
   },
-  leftHeader: {
-    marginLeft: 5,
-  },
-  leftHeaderText: {
-    marginLeft: 3,
-    color: '#6495ED',
-  },
-  subContainer: {
-    flexDirection: 'row',
-  },
 });
 
 export default StackNavigator;
