@@ -5,11 +5,10 @@ import MapView from 'react-native-map-clustering';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import CustomizedMarkerLabel from '../../components/CustomizedMarkerLabel';
+import AddingNewLocationModal from '../../components/AddingNewLocationModal';
 import data from '../../helpers/data';
-import data2 from '../../helpers/data2';
 import styles from './style';
 import RenderItem from '../../components/RenderItem';
-import AddingNewLocationModal from '../../components/AddingNewLocationModal';
 
 const initialRegion = {
   latitude: 39.91987,
@@ -19,7 +18,7 @@ const initialRegion = {
 };
 
 const MapViewClustered = () => {
-  const [allData, setAllData] = useState(data2);
+  const [allData, setAllData] = useState(data);
   const [markerVisible, setMarkerVisible] = useState(false);
   const [locationsModalVisibility, setLocationsModalVisibility] =
     useState(false);

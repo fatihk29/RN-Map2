@@ -4,12 +4,11 @@ import {View, Text, TouchableOpacity, Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import data from '../../helpers/data';
-import data2 from '../../helpers/data2';
 import styles from './style';
 
 const MainScreen = () => {
   const mapRef = React.useRef(null);
-  const [allData] = useState(data2);
+  const [allData] = useState(data);
   const [markerVisible, setMarkerVisible] = useState(false);
 
   const [location, setLocation] = useState({
