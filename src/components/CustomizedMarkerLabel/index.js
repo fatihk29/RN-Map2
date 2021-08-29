@@ -1,5 +1,7 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text} from 'react-native';
+
+import styles from './style';
 
 function CustomizedMarkerLabel({item}) {
   return (
@@ -9,14 +11,5 @@ function CustomizedMarkerLabel({item}) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: 80,
-    height: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default CustomizedMarkerLabel;
