@@ -108,13 +108,15 @@ const MapViewClustered = () => {
         ) : null}
       </MapView>
       {markerVisible ? (
-        <View style={styles.info}>
+        <TouchableOpacity
+          style={styles.info}
+          onPress={() => setAddingNewLocationVisibility(true)}>
           <Icon name="information-circle" size={25} color="black" />
           <Text style={styles.infoText}>{'To Add New Location Click'}</Text>
           <Icon name="location" size={27} color="#052" />
-        </View>
+        </TouchableOpacity>
       ) : null}
-      {locationsModalVisibility ? (
+      {!markerVisible && locationsModalVisibility ? (
         <View style={styles.locationsModalVisibilityContainer}>
           <FlatList
             data={data}

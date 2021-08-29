@@ -1,7 +1,7 @@
 import React from 'react';
 import {FlatList, SafeAreaView, Text, View} from 'react-native';
 
-import data from '../../helpers/data2';
+import data from '../../helpers/data';
 import RenderItem from '../../components/RenderItem';
 import styles from './style';
 
